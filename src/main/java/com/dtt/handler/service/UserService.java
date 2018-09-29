@@ -1,9 +1,10 @@
-package com.gpch.login.service;
+package com.dtt.handler.service;
 
-import com.gpch.login.model.Role;
-import com.gpch.login.model.User;
-import com.gpch.login.repository.RoleRepository;
-import com.gpch.login.repository.UserRepository;
+import com.dtt.handler.model.Role;
+import com.dtt.handler.model.User;
+import com.dtt.handler.repository.RoleRepository;
+import com.dtt.handler.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

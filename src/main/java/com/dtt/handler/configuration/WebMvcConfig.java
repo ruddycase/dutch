@@ -1,4 +1,4 @@
-package com.gpch.login.configuration;
+package com.dtt.handler.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,10 @@
-package com.gpch.login.service;
+package com.dtt.handler.service;
 
-import com.gpch.login.model.User;
-import com.gpch.login.repository.RoleRepository;
-import com.gpch.login.repository.UserRepository;
+import com.dtt.handler.model.User;
+import com.dtt.handler.repository.RoleRepository;
+import com.dtt.handler.repository.UserRepository;
+import com.dtt.handler.service.UserService;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -32,12 +34,11 @@ public class UserServiceTest {
         userServiceUnderTest = new UserService(mockUserRepository,
                                                mockRoleRepository,
                                                mockBCryptPasswordEncoder);
-        user = User.builder()
-                .id(1)
-                .name("Gustavo")
-                .lastName("Ponce")
-                .email("test@test.com")
-                .build();
+        user = new User();
+        user.setId(1);
+        user.setName("Gustavo");
+        user.setLastName("Ponce");
+        user.setEmail("test@test.com");
 
         Mockito.when(mockUserRepository.save(any()))
                 .thenReturn(user);
@@ -62,8 +63,11 @@ public class UserServiceTest {
         // Setup
         final String email = "test@test.com";
 
+        User user = new User();
+        user.setEmail(email);
+        
         // Run the test
-        User result = userServiceUnderTest.saveUser(User.builder().build());
+        User result = userServiceUnderTest.saveUser(user);
 
         // Verify the results
         assertEquals(email, result.getEmail());

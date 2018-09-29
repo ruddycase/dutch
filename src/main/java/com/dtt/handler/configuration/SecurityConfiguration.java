@@ -1,4 +1,4 @@
-package com.gpch.login.configuration;
+package com.dtt.handler.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

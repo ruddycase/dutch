@@ -1,9 +1,10 @@
-package com.gpch.login.controller;
+package com.dtt.handler.controller;
 
 import javax.validation.Valid;
 
-import com.gpch.login.model.User;
-import com.gpch.login.service.UserService;
+import com.dtt.handler.model.User;
+import com.dtt.handler.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -67,6 +68,4 @@ public class LoginController {
         modelAndView.setViewName("admin/home");
         return modelAndView;
     }
-
-
 }
