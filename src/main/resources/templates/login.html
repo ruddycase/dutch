@@ -3,35 +3,61 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Spring Security Tutorial</title>
+    <title th:text=#{login.title}></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script type="text/javascript">
+	    function updateLocale(locale) {
+	    	window.location.replace('login?lang=' + locale);
+	    }
+	    
+        $(document).ready(function() {
+            $("#locales").change(function () {
+                var selectedOption = $('#locales').val();
+                if (selectedOption !== ''){
+                    window.location.replace('login?lang=' + selectedOption);
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
 <form th:action="@{/registration}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
+    <button class="btn btn-md btn-warning btn-block" type="Submit" th:text=#{login.registration}></button>
 </form>
 
 <div class="container">
-    <img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo"/>
     <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="Training"></h3>
+        <h3 class="form-signin-heading" th:text="#{login.training}"></h3>
         <br/>
 
         <input type="text" id="email" name="email" th:placeholder="Email"
                class="form-control"/> <br/>
-        <input type="password" th:placeholder="Password"
+        <input type="password" th:placeholder="#{login.password}"
                id="password" name="password" class="form-control"/> <br/>
 
         <div align="center" th:if="${param.error}">
-            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+            <p style="font-size: 20; color: #FF1C19;" th:text=#{login.failed}></p>
         </div>
         <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
-                th:text="Login"></button>
-    </form>
+                th:text="#{login.login}"></button>
+
+	    <br/><br/>
+		<div>
+			<div class="d-inline-block">
+				<img onclick="updateLocale('en')" th:src="@{/images/32x32_us.png}" class="img-responsive" style="margin: 5px" alt="english"/>
+			</div>
+			<div class="d-inline-block">
+				<img onclick="updateLocale('fr')" th:src="@{/images/32x32_fr.png}" class="img-responsive" style="margin: 5px" alt="french"/>
+			</div>
+		</div>
+	</form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
