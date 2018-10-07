@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+  xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <head th:replace="fragments/general :: head(title=#{login.title})"></head>
+  <head th:replace="fragments/header :: head(title=#{login.title})"></head>
   <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
 </head>
 
 <body>
-<form th:action="@{/registration}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit" th:text=#{login.registration}></button>
-</form>
+  <form th:action="@{/registration}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Submit"
+      th:text=#{login.registration}></button>
+  </form>
 
-<div class="container">
+  <div class="container">
     <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="#{login.training}"></h3>
-        <br/>
+      <h3 class="form-signin-heading" th:text="#{login.training}"></h3>
+      <br /> <input type="text" id="email" name="email"
+        th:placeholder="#{login.email}" class="form-control" /> <br /> <input
+        type="password" th:placeholder="#{login.password}" id="password"
+        name="password" class="form-control" /> <br />
 
-        <input type="text" id="email" name="email" th:placeholder="Email"
-               class="form-control"/> <br/>
-        <input type="password" th:placeholder="#{login.password}"
-               id="password" name="password" class="form-control"/> <br/>
+      <div align="center" th:if="${param.error}">
+        <p style="font-size: 20; color: #FF1C19;"
+          th:text=#{login.failed}></p>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" name="Submit"
+        value="Login" type="Submit" th:text="#{login.login}"></button>
 
-        <div align="center" th:if="${param.error}">
-            <p style="font-size: 20; color: #FF1C19;" th:text=#{login.failed}></p>
+      <br />
+      <br />
+      <div>
+        <div class="d-inline-block">
+          <img onclick="updateLocale('en')"
+            th:src="@{/images/32x32_us.png}" class="img-responsive"
+            style="margin: 5px" alt="english" />
         </div>
-        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
-                th:text="#{login.login}"></button>
+        <div class="d-inline-block">
+          <img onclick="updateLocale('fr')"
+            th:src="@{/images/32x32_fr.png}" class="img-responsive"
+            style="margin: 5px" alt="french" />
+        </div>
+      </div>
+    </form>
+  </div>
 
-	    <br/><br/>
-		<div>
-			<div class="d-inline-block">
-				<img onclick="updateLocale('en')" th:src="@{/images/32x32_us.png}" class="img-responsive" style="margin: 5px" alt="english"/>
-			</div>
-			<div class="d-inline-block">
-				<img onclick="updateLocale('fr')" th:src="@{/images/32x32_fr.png}" class="img-responsive" style="margin: 5px" alt="french"/>
-			</div>
-		</div>
-	</form>
-</div>
-
-    <div th:insert="fragments/general :: footer"></div>
-   
-
+  <div th:insert="fragments/footer :: footer"></div>
 </body>
 </html>
