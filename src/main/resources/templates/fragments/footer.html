@@ -4,15 +4,11 @@
 <body>
 
   <div th:fragment="footer" th:remove="tag">
-
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">&copy; 2018 Dutch</p>
-      </div>
+    <footer th:fragment="footer" class="page-footer font-small bg-primary fixed-bottom">
+      <div class="footer-copyright text-center py-3">&copy;2018</div>
     </footer>
-
+    
     <div th:replace="fragments/scripts :: commmon"></div>
-
   </div>
 
 </body>
