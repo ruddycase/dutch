@@ -8,12 +8,12 @@
 </head>
 
 <body>
-    <div class="container" style="padding-top: 50px">
+    <div class="container" style="padding-top: 50px;">
 	<div class="row">
 	<div class="col-md-4">
-      <div class="card rounded border-primary bg-light shadow p-3 mb-5" style="height: 100%">
+      <div class="card rounded border-primary bg-light shadow p-3 mb-5">
       <div class="card-body">
-        <form th:action="@{/login}" method="POST">
+        <form th:action="@{/login}" method="post">
           <input type="text" id="email" name="email"
                 th:placeholder="#{login.email}" class="form-control" /> <br />
           <input type="password" th:placeholder="#{login.password}"
@@ -27,16 +27,21 @@
                 value="Login" type="Submit" th:text="#{login.login}"></button>
         </form>
         <br /><br />
-        <div>
-          <div class="d-inline-block">
+        <div class="d-flex flex-row bd-highlight mb-3">
+          <div class="p-2 bd-highlight">
             <img onclick="updateLocale('en')"
-                  th:src="@{/images/32x32_us.png}" class="img-responsive"
-                  style="margin: 5px" alt="english" />
+                 th:src="@{/images/32x32_us.png}" class="img-responsive"
+                 style="margin: 5px" alt="english" />
           </div>
-          <div class="d-inline-block">
+          <div class="p-2 bd-highlight">
             <img onclick="updateLocale('fr')"
-                  th:src="@{/images/32x32_fr.png}" class="img-responsive"
-                  style="margin: 5px" alt="french" />
+                 th:src="@{/images/32x32_fr.png}" class="img-responsive"
+                 style="margin: 5px" alt="french" />
+          </div>
+          <div class="ml-auto p-2 bd-highlight">
+            <form th:action="@{/registration}" method="post">
+              <button type="Submit" class="btn btn-secondary">Register</button>
+            </form>
           </div>
         </div>
       </div><!-- card body -->
