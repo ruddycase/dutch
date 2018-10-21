@@ -1,9 +1,8 @@
 package com.dtt.handler.controller;
 
-import javax.validation.Valid;
+import java.util.List;
 
-import com.dtt.handler.model.User;
-import com.dtt.handler.service.UserService;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,11 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dtt.handler.model.Report;
+import com.dtt.handler.model.User;
+import com.dtt.handler.service.ReportService;
+import com.dtt.handler.service.UserService;
+
 @Controller
 public class LoginController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private ReportService reportService;
 
     @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
@@ -63,9 +70,21 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-        modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+        
+        List<Report> progress = reportService.dashboardReports(user.getId(), 0);
+        List<Report> accepted = reportService.dashboardReports(user.getId(), 1);
+        List<Report> submitted = reportService.dashboardReports(user.getId(), 2);
+        List<Report> rejected = reportService.dashboardReports(user.getId(), 3);
+
+        //modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+        modelAndView.addObject("progressReports", progress);
+        modelAndView.addObject("rejectedReports", rejected);
+        modelAndView.addObject("acceptedReports", accepted);
+        modelAndView.addObject("submittedReports", submitted);
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
         modelAndView.setViewName("admin/home");
         return modelAndView;
     }
+    
+    
 }

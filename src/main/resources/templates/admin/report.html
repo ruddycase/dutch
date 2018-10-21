@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:replace="fragments/header :: head(title=#{home.title})"></head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+</head>
+<body>
+
+  <div th:insert="fragments/nav :: nav"></div>
+
+  <div class="container">
+    <div class="my-4">
+      <div th:each="history : ${report.history}"
+        class="alert alert-dismissible fade show"
+        th:classappend="${history.status} == 3 ? alert-danger : alert-success" role="alert">
+        <span
+          th:text="${#dates.format(history.created, 'MM/dd/yyyy KK:mma')} + ' - '
+                     + ${history.modifier.name} + ' - ' + ${history.reason}"></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <div class="shadow-lg p-3 mb-5 bg-white rounded my-4"></div>
+  </div>
+  <div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>
