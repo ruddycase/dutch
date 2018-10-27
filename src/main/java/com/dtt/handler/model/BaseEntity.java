@@ -18,7 +18,7 @@ import lombok.Data;
 abstract class BaseEntity {
 
 	public BaseEntity() {}
-	public BaseEntity(int id, Date created, Date updated) {
+	public BaseEntity(Long id, Date created, Date updated) {
 		this.id = id;
 		this.created = created;
 		this.updated = updated;
@@ -27,7 +27,7 @@ abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
+    private Long id;
     
     @Column(name = "created")
     @Setter(AccessLevel.NONE) private Date created = new Date();

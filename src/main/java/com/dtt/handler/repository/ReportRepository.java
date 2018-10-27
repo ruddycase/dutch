@@ -14,8 +14,8 @@ import com.dtt.handler.model.Report;
 public interface ReportRepository extends JpaRepository<Report, Integer> {
 
     @Query("SELECT r FROM Report r WHERE r.owner = :owner AND r.status = :status ORDER BY r.updated DESC")
-	public List<Report> dashboardReports(@Param("owner") int owner, @Param("status") int status, Pageable page);
+    public List<Report> getReportsByOwnerAndStatus(@Param("owner") Long owner, @Param("status") int status, Pageable page);
     
-	public Report getReportById(int id);
+    public Report getReportById(Long id);
 
 }

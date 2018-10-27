@@ -24,8 +24,7 @@
             
           </div>
           <div class="card-footer">
-            <button class="btn btn-primary float-left" type="button">
-              Create Report</button>
+            <a th:href="@{/admin/report}" class="btn btn-primary float-left">Create Report</a>
             <button th:if="${progressReports.size() > 4}"
               class="btn btn-theme float-right" type="button">
               View All</button>
@@ -42,9 +41,9 @@
             </ol>
           </div>
           <div class="card-footer text-center">
-            <span class="text-left"><a href="#">Review
-                Reports</a></span> <span class="text-right"><a href="#">The
-                Second</a></span>
+            <button th:if="${submittedReports.size() > 4}"
+              class="btn btn-theme float-right" type="button">
+              View All</button>
           </div>
         </div>
       </div>
@@ -61,8 +60,9 @@
             </ol>
           </div>
           <div class="card-footer">
-            <small class="text-muted">The above reports require
-              attention</small>
+            <button th:if="${acceptedReports.size() > 4}"
+              class="btn btn-theme float-right" type="button">
+              View All</button>
           </div>
         </div>
         <div class="card">
@@ -76,8 +76,14 @@
             </ol>
           </div>
           <div class="card-footer">
-            <small class="text-muted">The above reports require
-              attention</small>
+            <div>
+              <button th:if="${rejectedReports.size() > 4}"
+                class="btn btn-theme float-right" type="button">
+                View All</button>
+              </div>
+              <div>
+                <small class="text-muted">The above reports require attention</small>
+              </div>
           </div>
         </div>
       </div>

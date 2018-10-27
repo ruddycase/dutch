@@ -15,16 +15,16 @@
       <div class="card-body">
         <form th:action="@{/login}" method="post">
           <input type="text" id="email" name="email"
-                th:placeholder="#{login.email}" class="form-control" /> <br />
+                th:placeholder="#{login.email}" class="form-control" value="test@test.com" /> <br />
           <input type="password" th:placeholder="#{login.password}"
-                id="password" name="password" class="form-control" /> <br />
+                id="password" name="password" class="form-control" value="testing1234" /> <br />
     
           <div align="center" th:if="${param.error}">
             <p style="font-size: 20; color: #FF1C19;"
                   th:text=#{login.failed}></p>
           </div>
           <button class="btn btn-lg btn-primary btn-block" name="Submit"
-                value="Login" type="Submit" th:text="#{login.login}"></button>
+                type="Submit" th:text="#{login.login}"></button>
         </form>
         <br /><br />
         <div class="d-flex flex-row bd-highlight mb-3">

@@ -13,16 +13,76 @@
     <div class="my-4">
       <div th:each="history : ${report.history}"
         class="alert alert-dismissible fade show"
-        th:classappend="${history.status} == 3 ? alert-danger : alert-success" role="alert">
+        th:classappend="${history.status} == 3 ? alert-danger : alert-success"
+        role="alert">
         <span
           th:text="${#dates.format(history.created, 'MM/dd/yyyy KK:mma')} + ' - '
                      + ${history.modifier.name} + ' - ' + ${history.reason}"></span>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <button type="button" class="close" data-dismiss="alert"
+          aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
     </div>
-    <div class="shadow-lg p-3 mb-5 bg-white rounded my-4"></div>
+    <div class="shadow-lg p-3 mb-5 bg-white rounded my-4">
+      <form action="#" th:action="@{/process}" th:object="${report}" method="post" >
+        <fieldset >
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" th:field="${report.title}">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="one">One</label>
+            <input type="text" class="form-control" id="one" th:field="${report.one}">
+          </div>
+          <div class="form-group col-md-4">
+            <button type="submit" name="defaults" class="btn btn-primary float-right">Set As Defaults</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="two">Two</label>
+          <input type="text" class="form-control" id="two" th:field="${report.two}">
+        </div>
+        <div class="form-group">
+          <label for="three">Three</label>
+          <input type="text" class="form-control" id="three" th:field="${report.three}">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="four">Four</label>
+            <input type="text" class="form-control" id="four" th:field="${report.four}">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="drugType">Drug Type</label>
+            <select class="form-control" id="drugType" th:field="${report.drugType}">
+              <option value="drug1" selected>drug1</option>
+              <option value="drug2">drug2</option>
+              <option value="drug3">drug3</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="five">Five</label>
+            <input type="text" class="form-control" id="five" th:field="${report.five}">
+          </div>
+        </div>
+        <div class="form-row" >
+          <div class="form-group col-md-8">
+            <button th:if="${report.id > 0}" type="submit" name="delete" class="btn btn-danger">Delete</button>
+          </div>
+          <div class="form-group col-md-4">
+            <button type="submit" name="approval" class="btn btn-success float-right mr-2">Submit</button>
+            <button type="reset" name="reset" class="btn btn-secondary float-right mr-2">Reset</button>
+            <button type="submit" name="cancel" class="btn btn-warning float-right mr-2">Cancel</button>
+            <button type="submit" name="save" class="btn btn-primary float-right mr-2">Save</button>
+          </div>
+        </div>
+        <input type="hidden" th:field="${report.id}">
+        </fieldset>
+      </form>
+    </div>
+    
+    <br/><br/>
   </div>
   <div th:insert="fragments/footer :: footer"></div>
 </body>

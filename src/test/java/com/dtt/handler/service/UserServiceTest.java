@@ -35,7 +35,7 @@ public class UserServiceTest {
                                                mockRoleRepository,
                                                mockBCryptPasswordEncoder);
         user = new User();
-        user.setId(1);
+        user.setId(1L);
         user.setName("Gustavo");
         user.setLastName("Ponce");
         user.setEmail("test@test.com");

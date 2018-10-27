@@ -19,12 +19,25 @@ public class ReportService {
         this.reportRepository = reportRepository;
     }
 
-    public List<Report> dashboardReports(int owner, int status) {
-        return reportRepository.dashboardReports(owner, status, PageRequest.of(0, 5));
+    public List<Report> dashboardReports(Long id, int status) {
+        return reportRepository.getReportsByOwnerAndStatus(id, status, PageRequest.of(0, 5));
     }
     
-    public Report getReportById(int id) {
+    public Report getReportById(Long id) {
     	return reportRepository.getReportById(id);
     }
+
+	public Report save(Report report) {
+		return reportRepository.save(report);
+	}
+	
+	public void delete(Report report) {
+		reportRepository.delete(report);
+	}
+	
+	public Report getReportWithDefaults(Long id) {
+		List<Report> reports = reportRepository.getReportsByOwnerAndStatus(id, 4, PageRequest.of(0, 1));
+		return reports.size() == 1 ? reports.get(0) : new Report();
+	}
 
 }
