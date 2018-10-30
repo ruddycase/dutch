@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="shadow-lg p-3 mb-5 bg-white rounded my-4">
-      <form action="#" th:action="@{/process}" th:object="${report}" method="post" >
+      <fieldset disabled>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="title">Title</label>
@@ -36,7 +36,6 @@
             <input type="text" class="form-control" id="one" th:field="${report.one}">
           </div>
           <div class="form-group col-md-4">
-            <button type="submit" name="defaults" class="btn btn-primary float-right">Set As Defaults</button>
           </div>
         </div>
         <div class="form-group">
@@ -54,29 +53,23 @@
           </div>
           <div class="form-group col-md-4">
             <label for="drugType">Drug Type</label>
-            <select class="form-control" id="drugType" th:field="${report.drugType}">
-              <option value="drug1" selected>drug1</option>
-              <option value="drug2">drug2</option>
-              <option value="drug3">drug3</option>
-            </select>
+            <input type="text" class="form-control" id="drugType" th:field="${report.drugType}">
           </div>
           <div class="form-group col-md-2">
             <label for="five">Five</label>
             <input type="text" class="form-control" id="five" th:field="${report.five}">
           </div>
         </div>
-        <div class="form-row" >
-          <div class="form-group col-md-8">
-            <button th:if="${report.id > 0}" type="submit" name="delete" class="btn btn-danger">Delete</button>
-          </div>
-          <div class="form-group col-md-4">
-            <button type="submit" name="approval" class="btn btn-success float-right mr-2">Submit</button>
-            <button type="reset" name="reset" class="btn btn-secondary float-right mr-2">Reset</button>
-            <button type="submit" name="cancel" class="btn btn-warning float-right mr-2">Cancel</button>
-            <button type="submit" name="save" class="btn btn-primary float-right mr-2">Save</button>
-          </div>
-        </div>
-        <input type="hidden" th:field="${report.id}">
+      </fieldset>
+    </div>
+    
+    <div class="shadow-lg p-3 mb-5 bg-white rounded my-4">
+      <form action="#" th:action="@{/approval}" method="post" >
+        <button type="submit" name="approve" value="approved" class="btn btn-success float-right mr-2">Approve</button>
+        <button type="submit" name="reject" value="rejected" class="btn btn-danger float-right mr-2">Reject</button>
+        <label for="reason">Reason</label>
+        <textarea id="reason" name="reason" >Reason for approval/rejection</textarea>
+        <input type="hidden" th:field="${report.id}" >
       </form>
     </div>
     

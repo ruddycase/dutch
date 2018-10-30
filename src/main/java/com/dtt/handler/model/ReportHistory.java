@@ -2,6 +2,8 @@ package com.dtt.handler.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -16,7 +18,8 @@ import lombok.EqualsAndHashCode;
 public class ReportHistory extends BaseEntity {
 
 	@Column(name = "status")
-	private int status;
+	@Enumerated(EnumType.ORDINAL)
+	private ReportStatus status;
 	
 	/*
 	 * Modifiers reason for changing the report status.

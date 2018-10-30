@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dtt.handler.model.Report;
+import com.dtt.handler.model.ReportStatus;
 import com.dtt.handler.model.User;
 import com.dtt.handler.service.ReportService;
 import com.dtt.handler.service.UserService;
@@ -78,15 +79,15 @@ public class LoginController {
 	 * Data necessary to go back to the dashboard
 	 */
 	private ModelAndView backToDashboard(Long userId) {
-        List<Report> progress = reportService.dashboardReports(userId, 0);
-        List<Report> accepted = reportService.dashboardReports(userId, 1);
-        List<Report> submitted = reportService.dashboardReports(userId, 2);
-        List<Report> rejected = reportService.dashboardReports(userId, 3);
+        List<Report> progress = reportService.dashboardReports(userId, ReportStatus.PROGRESS);
+        List<Report> approved = reportService.dashboardReports(userId, ReportStatus.APPROVED);
+        List<Report> submitted = reportService.dashboardReports(userId, ReportStatus.SUBMITTED);
+        List<Report> rejected = reportService.dashboardReports(userId, ReportStatus.REJECTED);
 
 		ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("progressReports", progress);
         modelAndView.addObject("rejectedReports", rejected);
-        modelAndView.addObject("acceptedReports", accepted);
+        modelAndView.addObject("approvedReports", approved);
         modelAndView.addObject("submittedReports", submitted);
         modelAndView.setViewName("admin/home");
 		return modelAndView;

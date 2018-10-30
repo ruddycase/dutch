@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
@@ -22,7 +24,8 @@ import lombok.EqualsAndHashCode;
 public class Report extends BaseEntity {
 
 	@Column(name = "status")
-	private int status;
+	@Enumerated(EnumType.ORDINAL)
+	private ReportStatus status;
 
 	@Column(name = "title")
 	private String title;

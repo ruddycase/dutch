@@ -36,7 +36,7 @@
           <div class="card-body">
             <ol class="card-text">
               <li th:each="report: ${submittedReports}" >
-                <a th:href="@{'/admin/report/' + ${report.id}}" th:text="${report.title}"></a>
+                <a th:href="@{'/admin/roreport/' + ${report.id}}" th:text="${report.title}"></a>
               </li>
             </ol>
           </div>
@@ -50,21 +50,6 @@
     </div>
     <div id="row2" class="my-4">
       <div class="card-deck">
-        <div class="card">
-          <div class="card-header font-weight-bold bg-success">Accepted</div>
-          <div class="card-body">
-            <ol class="card-text">
-              <li th:each="report: ${acceptedReports}" >
-                <a th:href="@{'/admin/report/' + ${report.id}}" th:text="${report.title}"></a>
-              </li>
-            </ol>
-          </div>
-          <div class="card-footer">
-            <button th:if="${acceptedReports.size() > 4}"
-              class="btn btn-theme float-right" type="button">
-              View All</button>
-          </div>
-        </div>
         <div class="card">
           <div class="card-header font-weight-bold bg-danger">Action
             Requested</div>
@@ -86,9 +71,24 @@
               </div>
           </div>
         </div>
+        <div class="card">
+          <div class="card-header font-weight-bold bg-success">Approved</div>
+          <div class="card-body">
+            <ol class="card-text">
+              <li th:each="report: ${approvedReports}" >
+                <a th:href="@{'/admin/report/' + ${report.id}}" th:text="${report.title}"></a>
+              </li>
+            </ol>
+          </div>
+          <div class="card-footer">
+            <button th:if="${approvedReports.size() > 4}"
+              class="btn btn-theme float-right" type="button">
+              View All</button>
+          </div>
+        </div>
       </div>
     </div>
-    <br /> <br />
+    <br /><br />
 
   </div>
   <div th:insert="fragments/footer :: footer"></div>
